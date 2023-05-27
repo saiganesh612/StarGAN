@@ -6,7 +6,7 @@ import DisplayFiles from './Audio';
 function App() {
   return (
     <div className="App">
-      <h1>Lambani-Soliga TTS Results</h1>
+      {/* <h1>Lambani-Soliga TTS Results</h1> */}
       <br />
       <DisplayFiles src="lambani" />
       <br />
