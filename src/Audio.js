@@ -1,31 +1,21 @@
-import { SoligaPaths, LambaniPaths } from "./path"
+import { LambaniSoligaPaths, SoligaLambaniPaths, SoligaPaths, LambaniPaths } from "./path"
+import DisplayFiles from "./Display"
 
-const DisplayFiles = ({ src }) => {
-    const data = src === "soliga" ? SoligaPaths : LambaniPaths
+const AudioFiles = () => {
+    const componentData = [
+        { data: LambaniSoligaPaths, heading: "Lambani-Soliga StarGAN Results" },
+        { data: SoligaLambaniPaths, heading: "Soliga-Lambani StarGAN Results" },
+        { data: LambaniPaths, heading: "Lambani-Kanada StarGAN Results" },
+        { data: SoligaPaths, heading: "Soliga-Kanada StarGAN Results" }
+    ]
 
     return (
         <>
-            <h2>{src === "soliga" ? "Soliga-Kanada StarGAN Results" : "Lambani-Kanada StarGAN Results"}</h2>
-            <div className="mb-4">
-                <div className="row my-3">
-                    <div className="col"><h3>Source</h3></div>
-                    <div className="col"><h3>Target</h3></div>
-                    <div className="col"><h3>Result</h3></div>
-                </div>
-                {
-                    data.source.map((path, index) =>
-                        <div className="mt-4" key={index}>
-                            <div className="row">
-                                <div className="col"><audio src={path} controls /></div>
-                                <div className="col"><audio src={data.target[index]} controls /></div>
-                                <div className="col"><audio src={data.result[index]} controls /></div>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
+            {componentData.map((component, index) => (
+                <DisplayFiles key={index} data={component.data} heading={component.heading} />
+            ))}
         </>
     )
 }
 
-export default DisplayFiles
+export default AudioFiles
